@@ -1,4 +1,4 @@
-# Ionic 5 FREE Starter Tutorial
+# FREEE Ionic 5 FREE Starter Tutorial
 Enjoy this free ionic 5 starter app showcasing some of the new features from Ionic 5
 
 ## About this ionic demo
