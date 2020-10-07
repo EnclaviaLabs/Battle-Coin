@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="BACK" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>NUGGET </ion-title>
+    <ion-buttons slot="end">
+      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-row>
+    <ion-col class="content-col">
+      <ion-thumbnail class="user-image">
+        <img [src]="getMyIcon(nuggetID)">
+      </ion-thumbnail>
+      <ion-text >
+        <h2 class="user-name">{{nuggetID}}</h2>
+      </ion-text>
+
+      <ion-list *ngIf="currentShownTransaction">
+        <ion-item >
+          <ion-label position="stacked">GENESIS ELEMENT</ion-label>
+          <ion-input color="primary" readonly="true">{{currentShownTransaction.specification.memos[0].data}}</ion-input>
+        </ion-item>
+
+        <ion-item >
+          <ion-label position="stacked">CREATOR</ion-label>
+          <ion-input color="primary" readonly="true">{{currentShownTransaction.specification.source.address}}</ion-input>
+        </ion-item>
+
+        <ion-item >
+          <ion-label position="stacked">BIRTH DATE</ion-label>
+          <ion-input color="primary" readonly="true">{{currentShownTransaction.outcome.timestamp}}</ion-input>
+        </ion-item>
+    
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>

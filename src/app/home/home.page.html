@@ -1,7 +1,7 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-title>
-      Contacts
+      BattleCoin Universe
     </ion-title>
     <ion-buttons collapse="true" slot="end">
       <ion-button (click)="openNewContactModal()">
@@ -28,17 +28,35 @@
     <ion-segment-button value="All" checked>
       All
     </ion-segment-button>
-    <ion-segment-button value="Friend">
-      Friends
+    <ion-segment-button value="elements">
+      Elements
     </ion-segment-button>
-    <ion-segment-button value="Family">
-      Family
+    <ion-segment-button value="nuggets">
+      Nuggets
+    </ion-segment-button>
+    <ion-segment-button value="items">
+      Items
     </ion-segment-button>
   </ion-segment>
 
-  <ion-list>
-    <ion-item *ngFor="let contact of contacts | async" [routerLink]="'/contact-details/' + contact.id">
-      <ion-label>{{ contact.firstName }} {{ contact.lastName }}</ion-label>
+  <ion-list *ngIf="currentSegment=='elements'">
+    <ion-item *ngFor="let element of elements" [routerLink]="'/contact-details/' + element.id">
+      <ion-thumbnail class="user-image">
+        <img [src]="getMyIcon(element.id)">
+      </ion-thumbnail>
+      <ion-label>{{ element.id }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="currentSegment=='nuggets'">
+    <ion-item *ngFor="let element of nuggets" [routerLink]="'/nugget-details/' + element.id">
+      <ion-label>{{ element.id }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="currentSegment=='items'">
+    <ion-item *ngFor="let element of items" [routerLink]="'/contact-details/' + element.id">
+      <ion-label>{{ element.id }}</ion-label>
     </ion-item>
   </ion-list>
 

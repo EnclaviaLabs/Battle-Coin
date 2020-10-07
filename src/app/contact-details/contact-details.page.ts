@@ -14,9 +14,14 @@ export class ContactDetailsPage implements OnInit, AfterViewInit {
   @ViewChild('favIcon', { read: ElementRef }) favIcon: ElementRef;
 
   public contact: Contact;
+  public element: any;
   public favState = false;
   public favOnAnimation: Animation;
   public favOffAnimation: Animation;
+
+  nuggetsLoaded = false;
+
+  public nuggetsCreated = [];
 
   constructor(
     private dataService: DataService,
@@ -28,17 +33,47 @@ export class ContactDetailsPage implements OnInit, AfterViewInit {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.dataService.getContactById(parseInt(id, 10))
-    .subscribe(contact => {
-      // if the contact doesn't exists, return to home page
-      if (!contact) {
-        this.router.navigate(['/home']);
-      } else {
-        this.contact = contact;
-      }
+
+    console.log('show me', id)
+    
+    this.dataService.getElements().subscribe(elements => {
+
+      console.log('show me data elements', elements);
+
+      elements.map(a => {
+        const data = a.payload.doc.data();
+        const uid = a.payload.doc.id;
+        
+        const elem = {
+          id: uid,
+          data: data
+        }
+        if(id== elem.id)
+        {
+          this.element =  elem
+          console.log('found elem',this.element );
+        }
+        
+      })
     });
+
   }
 
+  async showNuggets(xrpl)
+  {
+    console.log('showNuggets', xrpl);
+
+    await this.dataService.xrplProv.getTransactionsFromAccount(xrpl).then(back=>{
+      console.log('XRP getTransactigetTransactionsFromAccount' ,back);
+    });
+    console.log('XRP fin');
+
+  }
+
+  getMyIcon(id)
+  {
+    return 'assets/elements/' + id + '.png'
+  }
   ngAfterViewInit() {
     console.log('favIcon', this.favIcon);
 

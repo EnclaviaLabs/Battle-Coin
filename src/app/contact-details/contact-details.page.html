@@ -1,41 +1,46 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="Contacts" defaultHref="/"></ion-back-button>
+      <ion-back-button text="BACK" defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="fav()">
         <ion-icon #favIcon name="heart"></ion-icon>
       </ion-button>
-      <ion-button color="primary" *ngIf="contact" [routerLink]="'/update-contact/' + contact.id">
+      <ion-button color="primary" *ngIf="element" [routerLink]="'/update-contact/' + element.id">
         Edit
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="contact">
+<ion-content [fullscreen]="true" *ngIf="element">
   <ion-row>
     <ion-col class="content-col">
       <ion-thumbnail class="user-image">
-        <img src="/assets/avatar.png">
+        <img [src]="getMyIcon(element.id)">
       </ion-thumbnail>
-      <ion-text color="dark">
-        <h2 class="user-name">{{contact.firstName}} {{contact.lastName}}</h2>
+      <ion-text >
+        <h2 class="user-name">{{element.id}}</h2>
       </ion-text>
 
       <ion-list>
         <ion-item>
-          <ion-label position="stacked">Phone</ion-label>
-          <ion-input color="primary" readonly="true">{{contact.phone}}</ion-input>
+          <ion-label position="stacked">Account</ion-label>
+          <ion-input color="primary" readonly="true">{{element.data.xrp}}</ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Email</ion-label>
-          <ion-input color="primary" readonly="true">{{contact.email}}</ion-input>
+          <ion-label position="stacked">Seed</ion-label>
+          <ion-input color="primary" readonly="true">{{element.data.seed}}</ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Category</ion-label>
-          <ion-input color="primary" readonly="true">{{contact.category}}</ion-input>
+          <ion-button (click)="showNuggets(element.data.xrp)" size="large">
+            <ion-icon name="eye"></ion-icon> LOAD NUGGETS: <b> {{element.id}} </b> 
+          </ion-button>
+        </ion-item>
+        <ion-item *ngIf="nuggetsLoaded">
+          <ion-label position="stacked">Nuggets created</ion-label>
+          <ion-input color="primary" readonly="true">{{dataService.xrplProv.shownNuggets.length}}</ion-input>
         </ion-item>
       </ion-list>
     </ion-col>

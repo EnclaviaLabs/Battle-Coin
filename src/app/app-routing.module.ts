@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'update-contact/:id',
     loadChildren: () => import('./update-contact/update-contact.module').then( m => m.UpdateContactPageModule)
+  },
+  {
+    path: 'nugget-details/:id',
+    loadChildren: () => import('./nugget-details/nugget-details.module').then( m => m.NuggetDetailsPageModule)
   }
 ];
 
