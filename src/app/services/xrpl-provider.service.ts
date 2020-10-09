@@ -26,7 +26,7 @@ export class XrplProviderService {
   public static shownNuggets = [];
 
   constructor() {
-    
+    this.start();
    }
 
   start()
@@ -85,6 +85,8 @@ export class XrplProviderService {
         
         XrplProviderService.shownNuggets = info.transactions;
         console.log('Got element NUGGETS:', XrplProviderService.shownNuggets)
+
+        
         return info.transactions
       }).catch(function (error) {
         console.log('Got error', error)

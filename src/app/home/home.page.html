@@ -1,7 +1,7 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-title>
-      BattleCoin Universe
+      BattleCoin Gate
     </ion-title>
     <ion-buttons collapse="true" slot="end">
       <ion-button (click)="openNewContactModal()">
@@ -15,7 +15,7 @@
 <ion-content fullscreen="true">
   <ion-header collapse="condense" class="ion-no-border">
     <ion-toolbar>
-      <ion-title size="large">Contacts</ion-title>
+      <ion-title size="large">???</ion-title>
       <ion-buttons collapse="true" slot="end">
         <ion-button color="primary" (click)="openNewContactModal()">
           <ion-icon slot="icon-only" name="add-outline"></ion-icon>
@@ -24,9 +24,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-segment (ionChange)="filterContacts($event)" value="All">
-    <ion-segment-button value="All" checked>
-      All
+  <ion-segment (ionChange)="filterContacts($event)" value="primes">
+    <ion-segment-button value="primes" checked>
+      Primes
     </ion-segment-button>
     <ion-segment-button value="elements">
       Elements

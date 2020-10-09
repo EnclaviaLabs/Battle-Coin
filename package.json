@@ -1,8 +1,8 @@
 {
-  "name": "ionic5-starter-tutorial",
-  "version": "1.0.0",
-  "author": "IonicThemes",
-  "homepage": "https://ionicthemes.com/",
+  "name": "BattleCoin",
+  "version": "0.0.4",
+  "author": "B1X sp. z o.o.",
+  "homepage": "https://b1x.app/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -60,5 +60,5 @@
     "tslint": "~5.15.0",
     "typescript": "~4.0.3"
   },
-  "description": "Ionic 5 Starter Tutorial"
+  "description": "Battle Coin explorer"
 }

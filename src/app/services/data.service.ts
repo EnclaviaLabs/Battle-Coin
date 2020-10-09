@@ -35,6 +35,12 @@ export class DataService {
     }
   }
   
+  setUpNuggets(nuggetsArray) {
+
+    
+    this.nuggets = nuggetsArray;
+    console.log('got new nuggetsArray', this.nuggets)
+  }
 
   getItemsFromNuggetId(id: string): Observable<any> {
 
