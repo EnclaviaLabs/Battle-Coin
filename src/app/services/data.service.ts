@@ -6,6 +6,7 @@ import { tap, map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import { XrplProviderService } from './xrpl-provider.service';
+import { resolve } from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -56,10 +57,7 @@ export class DataService {
 
       console.log('czek genesis accounts', fromAccount)
       
-      this.xrplProv.getTransactionsFromAccount( fromAccount).then((tx) => {
-        console.log('getTransactionsFromAccount', tx)
-        
-      })
+      
       
 
       

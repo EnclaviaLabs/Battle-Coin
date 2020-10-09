@@ -39,6 +39,15 @@
     </ion-segment-button>
   </ion-segment>
 
+  <ion-list *ngIf="currentSegment=='primes'">
+    <ion-item *ngFor="let element of primes" [routerLink]="'/contact-details/' + element.id">
+      <ion-thumbnail class="user-image">
+        <img [src]="getMyIcon(element.id)">
+      </ion-thumbnail>
+      <ion-label>{{ element.id }}</ion-label>
+    </ion-item>
+  </ion-list>
+
   <ion-list *ngIf="currentSegment=='elements'">
     <ion-item *ngFor="let element of elements" [routerLink]="'/contact-details/' + element.id">
       <ion-thumbnail class="user-image">

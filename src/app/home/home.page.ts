@@ -12,9 +12,10 @@ import { Observable } from 'rxjs';
 })
 export class HomePage {
   public contacts: Observable<Contact[]>;
-  public currentSegment: string = "All";
+  public currentSegment: string = "primes";
 
   public elements = [];
+  public primes = [];
   public nuggets = [];
   public items = [];
 
@@ -38,7 +39,15 @@ export class HomePage {
           id: uid,
           data: data
         }
-        this.elements.push(elem);
+        if(elem.id=="ANVIL" || elem.id=="VALUE" || elem.id=="LIFE")
+        {
+          this.primes.push(elem);
+        }
+        else
+        {
+          this.elements.push(elem);
+        }
+        
         //console.log('loading ELEMENT',elem.data.xrp);
 
       })
@@ -107,9 +116,7 @@ export class HomePage {
     console.log('pobierzWszystkoTegoTypa',xrpl);
 
 
-    this.dataService.xrplProv.getTransactionsFromAccount(xrpl).then( (txs)=>{
-      console.log('- txs',txs);
-    })
+    
   }
 
   getMyIcon(id)

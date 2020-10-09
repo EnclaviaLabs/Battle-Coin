@@ -23,7 +23,6 @@ export class XrplProviderService {
   public currentShownTransaction: any;
 
   public allNuggets = [];
-  public static shownNuggets = [];
 
   constructor() {
     this.start();
@@ -61,41 +60,7 @@ export class XrplProviderService {
     
   }
 
-  async getTransactionsFromAccount(address:string):Promise<any>
-  {
-    new RippledWsClient('wss://s.altnet.rippletest.net:51233').then(function (connection) {
-      // We have liftoff!
-      // All or other code lives here, using the 'connection' variable
-      let tx= {
-    
-        "id": 2,
-        "command": "account_tx",
-        "account": address,
-        "ledger_index_min": -1,
-        "ledger_index_max": -1,
-        "binary": false,
-        "limit": 2,
-        "forward": false
-        
-      }
-      
-      //console.log(' We have connection!', connection.getState());
-      //this.connection = connection;
-      connection.send(tx).then(function (info) {
-        
-        XrplProviderService.shownNuggets = info.transactions;
-        console.log('Got element NUGGETS:', XrplProviderService.shownNuggets)
-
-        
-        return info.transactions
-      }).catch(function (error) {
-        console.log('Got error', error)
-      })
-    }).catch(function (error) {
-      console.log('Got error', error)
-    })
-
-  }
+  
 
 
   async getTransactionByHash(hashTX:string)
