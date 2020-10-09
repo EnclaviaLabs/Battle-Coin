@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Contact } from '../models/contact';
 import { AnimationController } from '@ionic/angular';
 import { Animation } from '@ionic/core';
-import RippledWsClient from 'rippled-ws-client'
 
 @Component({
   selector: 'app-contact-details',
@@ -60,48 +59,18 @@ export class ContactDetailsPage implements OnInit, AfterViewInit {
 
   }
 
-  showNuggets(xrpl)
+  async showNuggets(xrpl)
   {
     console.log('showNuggets from here', xrpl);
 
-    this.getTransactionsFromAccount(xrpl)
+    await this.dataService.xrplProv.getTransactionsFromAccount(xrpl).then(txOk =>{
+      console.log('txOk ', txOk);
+    })
     
     console.log('XRP fin');
 
   }
 
-  async getTransactionsFromAccount(address:string):Promise<any>
-  {
-    new RippledWsClient('wss://s.altnet.rippletest.net:51233').then(function (connection) {
-      // We have liftoff!
-      // All or other code lives here, using the 'connection' variable
-      let tx= {
-    
-        "id": 2,
-        "command": "account_tx",
-        "account": address,
-        "ledger_index_min": -1,
-        "ledger_index_max": -1,
-        "binary": false,
-        "limit": 2,
-        "forward": false
-        
-      }
-      
-      //console.log(' We have connection!', connection.getState());
-      //this.connection = connection;
-      connection.send(tx).then(function (info) {
-        
-        console.log('Got element NUGGETS:', info.transactions)
-        return info.transactions;
-      }).catch(function (error) {
-        console.log('Got error', error)
-      })
-    }).catch(function (error) {
-      console.log('Got error', error)
-    })
-
-  }
 
   getMyIcon(id)
   {
